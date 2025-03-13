@@ -1,0 +1,12 @@
+﻿  Variables.c
+C:\Users\Lapiz\source\repos\Variables\Variables.c(8,13): warning C4473: 'scanf_s' : not enough arguments passed for format string
+      C:\Users\Lapiz\source\repos\Variables\Variables.c(8,13):
+      placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+      C:\Users\Lapiz\source\repos\Variables\Variables.c(8,13):
+      the missing variadic argument 2 is required by format string '%c'
+      C:\Users\Lapiz\source\repos\Variables\Variables.c(8,13):
+      this argument is used as a buffer size
+  
+  Variables.cpp
+Variables\x64\Debug\Variables.obj : warning LNK4042: object specified more than once; extras ignored
+  Variables.vcxproj -> C:\Users\Lapiz\source\repos\Variables\x64\Debug\Variables.exe
