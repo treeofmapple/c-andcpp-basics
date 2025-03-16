@@ -27,7 +27,7 @@ struct star() {
         }
     }
 
-    void show(sf::RenderWindow &window) {
+    void show(sf::RenderWindow & window) {
         float sx = (x / z) * WIDTH / 2 + WIDTH / 2;
         float sy = (y / z) * HEIGHT / 2 + HEIGHT / 2;
         float r = (1 - z / WIDTH) * 8;
