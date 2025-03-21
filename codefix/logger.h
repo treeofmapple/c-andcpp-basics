@@ -9,7 +9,6 @@ enum LogPriority
 
 class Logger
 {
-    
 private:
     static LogPriority priority;
 
@@ -20,15 +19,26 @@ public:
     }
 
     template<typename... Args>
-    static void Trace(const char* message, Args... args) 
+    static void Info(const char* message, Args... args) 
     {
-        if(priority <= TracePriority)
+        if(priority <= InfoPriority)
         {
-            printf("[Trace]\t");
-            printf(message, args);
-            print("\n");
+            printf("[Info]\t");
+            printf(message, args...);
+            printf("\n");
         }
     }
+
+	template<typename... Args>
+	static void Trace(const char* message, Args... args)
+	{
+		if (priority <= TracePriority)
+		{
+			printf("[Trace]\t");
+			printf(message, args...);
+			printf("\n");
+		}
+	}
 
     template<typename... Args>
     static void Debug(const char* message, Args... args) 
@@ -36,19 +46,8 @@ public:
         if(priority <= DebugPriority)
         {
             printf("[DEBUG]\t");
-            printf(message, args);
-            print("\n");
-        }
-    }
-
-    template<typename... Args>
-    static void Info(const char* message, Args... args) 
-    {
-        if(priority <= InfoPriority)
-        {
-            printf("[Info]\t");
-            printf(message, args);
-            print("\n");
+            printf(message, args...);
+            printf("\n");
         }
     }
 
@@ -58,8 +57,8 @@ public:
         if(priority <= TracePriority)
         {
             printf("[Error]\t");
-            printf(message, args);
-            print("\n");
+            printf(message, args...);
+            printf("\n");
         }
     }
 
@@ -69,8 +68,8 @@ public:
         if(priority <= WarnPriority)
         {
             printf("[Warn]\t");
-            printf(message, args);
-            print("\n");
+            printf(message, args...);
+            printf("\n");
         }
     }
 
@@ -80,8 +79,8 @@ public:
         if(priority <= CriticalPriority)
         {
             printf("[Critical]\t");
-            printf(message, args);
-            print("\n");
+            printf(message, args...);
+            printf("\n");
         }
     }
 
