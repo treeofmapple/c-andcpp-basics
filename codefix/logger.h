@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdio.h>
+#include <mutex>
 
 enum LogPriority 
 {
@@ -11,6 +12,7 @@ class Logger
 {
 private:
     static LogPriority priority;
+    static std::mutex log_mutex;
 
 public:
     static void set_priority(LogPriority new_priority)
@@ -23,6 +25,7 @@ public:
     {
         if(priority <= InfoPriority)
         {
+            std::scoped_lock lock(log_mutex);
             printf("[Info]\t");
             printf(message, args...);
             printf("\n");
@@ -34,6 +37,7 @@ public:
 	{
 		if (priority <= TracePriority)
 		{
+            std::scoped_lock lock(log_mutex);
 			printf("[Trace]\t");
 			printf(message, args...);
 			printf("\n");
@@ -45,6 +49,7 @@ public:
     {
         if(priority <= DebugPriority)
         {
+            std::scoped_lock lock(log_mutex);
             printf("[DEBUG]\t");
             printf(message, args...);
             printf("\n");
@@ -56,6 +61,7 @@ public:
     {
         if(priority <= TracePriority)
         {
+            std::scoped_lock lock(log_mutex);
             printf("[Error]\t");
             printf(message, args...);
             printf("\n");
@@ -67,6 +73,7 @@ public:
     {
         if(priority <= WarnPriority)
         {
+            std::scoped_lock lock(log_mutex);
             printf("[Warn]\t");
             printf(message, args...);
             printf("\n");
@@ -78,6 +85,7 @@ public:
     {
         if(priority <= CriticalPriority)
         {
+            std::scoped_lock lock(log_mutex);
             printf("[Critical]\t");
             printf(message, args...);
             printf("\n");
@@ -87,3 +95,4 @@ public:
 };
 
 LogPriority Logger::priority = InfoPriority;
+std::mutex Logger::log_mutex;
